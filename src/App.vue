@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <navbar-section />
-    <router-view />
-  </div>
+  <navbar-section />
+  <router-view />
 </template>
 
 <script setup>
