@@ -22,3 +22,18 @@ export default {
   name: "ClientsTable",
 };
 </script>
+
+<script setup>
+import { onMounted, ref } from "vue";
+
+const URL_CLIENTS = "http://localhost:3000/clients";
+const data = ref([]);
+
+async function getClients() {
+  data.value = await fetch(URL_CLIENTS).then((res) => res.json());
+}
+
+onMounted(() => {
+  getClients();
+});
+</script>
