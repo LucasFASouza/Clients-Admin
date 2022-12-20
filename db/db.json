@@ -1,0 +1,38 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Produto 1",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Produto 2",
+      "isActive": false
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "name": "Cliente 1",
+      "document": "123456789",
+      "phone": "123456789",
+      "email": "client@mail.com",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Cliente 2",
+      "document": "123456790",
+      "phone": "123456790",
+      "email": "client2@mail.com",
+      "isActive": false
+    }
+  ],
+  "relationships": [
+    {
+      "client": "1",
+      "products": ["1"]
+    }
+  ]
+}
