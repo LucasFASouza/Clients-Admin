@@ -1,10 +1,10 @@
 <template>
   <div>
-    <table>
+    <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Active</th>
+          <th class="w-1/2">Name</th>
+          <th class="w-1/2">Active</th>
         </tr>
       </thead>
       <tbody>
