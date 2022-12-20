@@ -1,5 +1,9 @@
-@import "./tailwind.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 #app {
   max-width: 1280px;
