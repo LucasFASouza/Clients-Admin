@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="flex flex-row">
+    <div class="flex flex-col md:flex-row">
       <clients-table class="w-2/3" />
       <products-table class="w-1/3" />
     </div>

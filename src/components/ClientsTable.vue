@@ -11,12 +11,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>John</td>
-          <td>123456789</td>
-          <td>123456789</td>
-          <td>client@mail.com</td>
-          <td>true</td>
+        <tr v-for="client in data" :key="client.id">
+          <td>{{ client.name }}</td>
+          <td>{{ client.document }}</td>
+          <td>{{ client.phone }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.isActive }}</td>
         </tr>
       </tbody>
     </table>

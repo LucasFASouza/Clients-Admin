@@ -8,9 +8,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Product</td>
-          <td>true</td>
+        <tr v-for="product in data" :key="product.id">
+          <td>{{ product.name }}</td>
+          <td>{{ product.isActive }}</td>
         </tr>
       </tbody>
     </table>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "ClientsTable",
+  name: "ProductsTable",
 };
 </script>
 
