@@ -26,11 +26,11 @@ export default {
 <script setup>
 import { onMounted, ref } from "vue";
 
-const URL_CLIENTS = "http://localhost:3000/clients";
+const URL_PRODUCTS = "http://localhost:3000/products";
 const data = ref([]);
 
 async function getClients() {
-  data.value = await fetch(URL_CLIENTS).then((res) => res.json());
+  data.value = await fetch(URL_PRODUCTS).then((res) => res.json());
 }
 
 onMounted(() => {
