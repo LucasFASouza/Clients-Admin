@@ -32,7 +32,8 @@ export default {
 <script setup>
 import { onMounted, ref } from "vue";
 
-const urlProducts = import.meta.env.VITE_API_URL + "/products";const data = ref([]);
+const urlProducts = import.meta.env.VITE_API_URL + "/products";
+const data = ref([]);
 
 async function getClients() {
   data.value = await fetch(urlProducts).then((res) => res.json());
