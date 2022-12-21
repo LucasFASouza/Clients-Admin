@@ -1,19 +1,19 @@
-# stone-app
+# Teste Frontend VueJs
 
-This template should help get you started developing with Vue 3 in Vite.
+#### Descrição do desafio:
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Construir um cadastro de cliente simples e associação de produtos oferecidos ao mesmo. A tela de cadastro de produtos deve conter: Nome, Ativo(Sim ou Não); e a de clientes: Nome, Documento, Telefone, Email, Ativo(Sim ou Não). Deve haver outra tela para associar os produtos ao cliente, com o nome do mesmo e os produtos para associar. Após os cadastros deve haver uma listagem com os produtos cadastrados, com a opção de editar e inativar/ativar, dos clientes, com as opções de edição, inativar/ativar e associar produtos.
 
 ## Project Setup
 
 ```sh
 npm install
+```
+
+### Run mock API - [Json Server](https://github.com/typicode/json-server)
+
+```sh
+npm run watch-db
 ```
 
 ### Compile and Hot-Reload for Development
@@ -33,3 +33,11 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## A Resolução
+
+#### Descrição do projeto
+
+A tela inicial do projeto apresenta ambas as listagens, de produtos e clientes. O ícone próximo ao título das listagens leva ao registro de suas respectivas categorias. Além de nome, documento, telefone, email e atividade (ou apenas nome e atividade, para a tabela de produtos), há a seção de Ações. Nesta há os ícones para edição e associação de clientes e produtos (ou apenas edição, para a tabela de produtos).
+
+Nas telas de edição, além de alterar os campos preenchidos nas telas de cadastro, é possível excluir o cliente ou produto, sendo esta uma ação diferente de desativar. Enquanto na tela de associoação é mostrada a lista dos produtos junto a uma checkbox, que quando ativa representa que aquele produto está disponível para o cliente em questão. Em ambas as telas existe um botão de retorno no canto superior esquerdo.
