@@ -4,7 +4,7 @@
       class="flex flex-row justify-center gap-5 text-xl text-center font-bold pb-2"
     >
       <h2>Products</h2>
-      <router-link :to="{ name: 'product', params: { mode: 'register' } }">
+      <router-link :to="{ name: 'product', params: { id: 'register' } }">
         +
       </router-link>
     </div>
@@ -46,7 +46,7 @@ const data = ref([]);
 const router = useRouter();
 
 function openProduct(id) {
-  router.push({ name: "product", params: { mode: id } });
+  router.push({ name: "product", params: { id: id } });
 }
 
 async function getClients() {
