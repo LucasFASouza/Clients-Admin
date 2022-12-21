@@ -4,6 +4,11 @@
       "name": "name",
       "isActive": false,
       "id": 1
+    },
+    {
+      "name": "a",
+      "isActive": false,
+      "id": 2
     }
   ],
   "clients": [
@@ -14,6 +19,14 @@
       "email": "a@a.com",
       "isActive": false,
       "id": 1
+    },
+    {
+      "name": "name 2",
+      "document": 2,
+      "phone": 2,
+      "email": "b@b.com",
+      "isActive": true,
+      "id": 10
     }
   ],
   "relationships": []

@@ -4,7 +4,9 @@
       class="flex flex-row justify-center gap-5 text-xl text-center font-bold pb-2"
     >
       <h2>Clients</h2>
-      <router-link to="client">+</router-link>
+      <router-link :to="{ path: 'client', params: { mode: register } }">
+        +
+      </router-link>
     </div>
     <table class="w-full text-center shadow rounded-md">
       <thead>
@@ -17,7 +19,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="client in data" :key="client.id">
+        <tr
+          v-for="client in data"
+          :key="client.id"
+          @click="openClient()"
+          class="hover:bg-slate-100 hover:cursor-pointer"
+        >
           <td>{{ client.name }}</td>
           <td>{{ client.document }}</td>
           <td>{{ client.phone }}</td>
@@ -37,9 +44,14 @@ export default {
 
 <script setup>
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const urlClients = import.meta.env.VITE_API_URL + "/clients";
 const data = ref([]);
+
+function openClient() {
+  useRouter.push({ name: "user", params: { mode: "edit" } });
+}
 
 async function getClients() {
   data.value = await fetch(urlClients).then((res) => res.json());
