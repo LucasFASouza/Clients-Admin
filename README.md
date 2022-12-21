@@ -5,6 +5,7 @@
 Construir um cadastro de cliente simples e associação de produtos oferecidos ao mesmo. A tela de cadastro de produtos deve conter: Nome, Ativo(Sim ou Não); e a de clientes: Nome, Documento, Telefone, Email, Ativo(Sim ou Não). Deve haver outra tela para associar os produtos ao cliente, com o nome do mesmo e os produtos para associar. Após os cadastros deve haver uma listagem com os produtos cadastrados, com a opção de editar e inativar/ativar, dos clientes, com as opções de edição, inativar/ativar e associar produtos.
 
 ## Project Setup
+O projeto utiliza de node 12
 
 ```sh
 npm install
