@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h2 class="text-xl text-center font-bold pb-2">Clients</h2>
+    <div
+      class="flex flex-row justify-center gap-5 text-xl text-center font-bold pb-2"
+    >
+      <h2>Clients</h2>
+      <router-link to="client">+</router-link>
+    </div>
     <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
