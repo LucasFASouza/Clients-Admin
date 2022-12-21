@@ -2,8 +2,12 @@
   <form
     id="register-product"
     @submit="submitProduct"
-    class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md"
+    class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md flex flex-col gap-5 py-5"
   >
+    <ArrowUturnLeftIcon
+      @click="router.back()"
+      class="h-6 w-6 mx-6 text-slate-400 hover:text-slate-600 hover:cursor-pointer"
+    />
     <h1 class="font-bold text-lg text-center">Register product</h1>
 
     <div class="flex px-16 gap-12">
@@ -16,26 +20,26 @@
           class="shadow rounded-md p-1 px-2"
         />
       </div>
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-1/2 items-center gap-3">
         <label for="productActive">Active</label>
         <input id="productActive" v-model="product.isActive" type="checkbox" />
       </div>
     </div>
 
-    <div class="px-16 flex justify-center">
-      <input
-        type="submit"
-        value="Submit"
-        class="bg-green-500 text-white rounded-md p-1 px-2"
-      />
-
+    <div class="px-16 flex justify-around">
       <a
         v-if="routeMode == 'Edit'"
         @click="deleteProduct"
-        class="bg-red-500 text-white rounded-md p-1 px-2"
+        class="bg-red-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
       >
         Delete
       </a>
+
+      <input
+        type="submit"
+        value="Submit"
+        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
+      />
     </div>
   </form>
 </template>
@@ -50,11 +54,13 @@ export default {
 import { reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { api } from "../api";
+
+import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
+
 const route = useRoute();
 const router = useRouter();
-const routeMode = route.params.mode == "register" ? "Register" : "Edit";
-
-const urlProducts = import.meta.env.VITE_API_URL + "/products";
+const routeMode = route.params.id == "register" ? "Register" : "Edit";
 
 const product = reactive({
   name: "",
@@ -62,7 +68,7 @@ const product = reactive({
 });
 
 if (routeMode == "Edit") {
-  product.id = route.params.mode;
+  product.id = route.params.id;
   getProduct();
 }
 
@@ -75,14 +81,14 @@ function submitProduct(e) {
   }
 
   if (routeMode == "Register") {
-    postProduct();
+    createProduct();
   } else {
-    putProduct();
+    updateProduct();
   }
 }
 
 async function getProduct() {
-  const response = await fetch(urlProducts + "/" + product.id);
+  const response = await api.product.getOne(product.id);
 
   if (response.ok) {
     const data = await response.json();
@@ -94,14 +100,8 @@ async function getProduct() {
   }
 }
 
-async function postProduct() {
-  const response = await fetch(urlProducts, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
+async function createProduct() {
+  const response = await api.product.create(product);
 
   if (response.ok) {
     alert("Product registered successfully :)");
@@ -111,14 +111,8 @@ async function postProduct() {
   }
 }
 
-async function putProduct() {
-  const response = await fetch(urlProducts + "/" + product.id, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
+async function updateProduct() {
+  const response = await api.product.update(product);
 
   if (response.ok) {
     alert("Product edited successfully :)");
@@ -129,9 +123,7 @@ async function putProduct() {
 }
 
 async function deleteProduct() {
-  const response = await fetch(urlProducts + "/" + product.id, {
-    method: "DELETE",
-  });
+  const response = await api.product.delete(product.id);
 
   if (response.ok) {
     alert("Product deleted successfully :)");

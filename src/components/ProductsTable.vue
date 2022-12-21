@@ -4,26 +4,30 @@
       class="flex flex-row justify-center gap-5 text-xl text-center font-bold pb-2"
     >
       <h2>Products</h2>
-      <router-link :to="{ name: 'product', params: { mode: 'register' } }">
-        +
+      <router-link :to="{ name: 'product', params: { id: 'register' } }">
+        <PlusCircleIcon
+          class="h-6 w-6 text-slate-400 hover:text-slate-600 hover:cursor-pointer"
+        />
       </router-link>
     </div>
     <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
-          <th class="w-1/2">Name</th>
-          <th class="w-1/2">Active</th>
+          <th>Name</th>
+          <th>Active</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="product in data"
-          :key="product.id"
-          @click="openProduct(product.id)"
-          class="hover:bg-slate-100 hover:cursor-pointer"
-        >
+        <tr v-for="product in data" :key="product.id">
           <td>{{ product.name }}</td>
           <td>{{ product.isActive ? "Yes" : "No :(" }}</td>
+          <td class="hover:cursor-pointer flex justify-center gap-2">
+            <PencilSquareIcon
+              @click="openProduct(product.id)"
+              class="h-6 w-6 text-slate-400 hover:text-slate-600"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -40,20 +44,23 @@ export default {
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const urlProducts = import.meta.env.VITE_API_URL + "/products";
+import { api } from "../api";
+
+import { PencilSquareIcon, PlusCircleIcon } from "@heroicons/vue/24/outline";
+
 const data = ref([]);
 
 const router = useRouter();
 
 function openProduct(id) {
-  router.push({ name: "product", params: { mode: id } });
+  router.push({ name: "product", params: { id: id } });
 }
 
-async function getClients() {
-  data.value = await fetch(urlProducts).then((res) => res.json());
+async function getProducts() {
+  data.value = await api.product.getAll();
 }
 
 onMounted(() => {
-  getClients();
+  getProducts();
 });
 </script>

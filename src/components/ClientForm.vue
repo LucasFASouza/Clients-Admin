@@ -2,8 +2,13 @@
   <form
     id="register-client"
     @submit="submitClient"
-    class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md"
+    class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md flex flex-col gap-5 py-5"
   >
+    <ArrowUturnLeftIcon
+      @click="router.back()"
+      class="h-6 w-6 mx-6 text-slate-400 hover:text-slate-600 hover:cursor-pointer"
+    />
+
     <h1 class="font-bold text-lg text-center">{{ routeMode }} client</h1>
 
     <div class="flex px-16 gap-12">
@@ -50,25 +55,25 @@
       </div>
     </div>
 
-    <div class="flex px-16 gap-12">
-      <div class="flex flex-row w-1/2">
+    <div class="flex px-16 justify-between">
+      <div class="flex flex-row w-1/2 items-center gap-3">
         <label for="clientActive">Active</label>
         <input id="clientActive" v-model="client.isActive" type="checkbox" />
       </div>
 
-      <input
-        type="submit"
-        value="Submit"
-        class="bg-green-500 text-white rounded-md p-1 px-2"
-      />
-
       <a
         v-if="routeMode == 'Edit'"
         @click="deleteClient"
-        class="bg-red-500 text-white rounded-md p-1 px-2"
+        class="bg-red-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
       >
         Delete
       </a>
+
+      <input
+        type="submit"
+        value="Submit"
+        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
+      />
     </div>
   </form>
 </template>
@@ -83,11 +88,13 @@ export default {
 import { reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { api } from "../api";
+
+import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
+
 const route = useRoute();
 const router = useRouter();
-const routeMode = route.params.mode == "register" ? "Register" : "Edit";
-
-const urlClients = import.meta.env.VITE_API_URL + "/clients";
+const routeMode = route.params.id == "register" ? "Register" : "Edit";
 
 const client = reactive({
   name: "",
@@ -95,10 +102,11 @@ const client = reactive({
   phone: "",
   email: "",
   isActive: true,
+  products: [],
 });
 
 if (routeMode == "Edit") {
-  client.id = route.params.mode;
+  client.id = route.params.id;
   getClient();
 }
 
@@ -116,14 +124,14 @@ function submitClient(e) {
   }
 
   if (routeMode == "Register") {
-    postClient();
+    createClient();
   } else {
-    putClient();
+    updateClient();
   }
 }
 
 async function getClient() {
-  const response = await fetch(urlClients + "/" + client.id);
+  const response = await api.client.getOne(client.id);
 
   if (response.ok) {
     const data = await response.json();
@@ -138,14 +146,8 @@ async function getClient() {
   }
 }
 
-async function postClient() {
-  const response = await fetch(urlClients, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(client),
-  });
+async function createClient() {
+  const response = await api.client.create(client);
 
   if (response.ok) {
     alert("Client registered successfully :)");
@@ -155,14 +157,8 @@ async function postClient() {
   }
 }
 
-async function putClient() {
-  const response = await fetch(urlClients + "/" + client.id, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(client),
-  });
+async function updateClient() {
+  const response = await api.client.update(client);
 
   if (response.ok) {
     alert("Client edited successfully :)");
@@ -173,9 +169,7 @@ async function putClient() {
 }
 
 async function deleteClient() {
-  const response = await fetch(urlClients + "/" + client.id, {
-    method: "DELETE",
-  });
+  const response = await api.client.delete(client.id);
 
   if (response.ok) {
     alert("Client deleted successfully :)");
