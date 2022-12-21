@@ -1,46 +1,137 @@
 {
   "products": [
     {
-      "name": "product 64",
+      "name": "Mailing List",
       "isActive": true,
       "id": 1
     },
     {
-      "name": "2",
+      "name": "Data Enrichment",
       "isActive": true,
       "id": 2
+    },
+    {
+      "name": "Sending tools",
+      "isActive": true,
+      "id": 3
+    },
+    {
+      "name": "Stone Station",
+      "isActive": true,
+      "id": 4
+    },
+    {
+      "name": "Stone Lab",
+      "isActive": true,
+      "id": 5
+    },
+    {
+      "name": "Carrier Pigeon",
+      "isActive": false,
+      "id": 6
     }
   ],
   "clients": [
     {
-      "name": "nam 2",
-      "document": 6777,
-      "phone": 2,
-      "email": "b@b.com",
-      "isActive": true,
-      "products": [],
-      "id": 10
-    },
-    {
-      "name": "Nome da silva",
-      "document": 1234567,
-      "phone": 987654321,
-      "email": "nome@silva.com",
-      "isActive": true,
-      "products": [],
-      "id": 11
-    },
-    {
-      "name": "new test8",
-      "document": 420,
-      "phone": 420,
-      "email": "new@test.com",
+      "name": "John Doe",
+      "document": 12312312312,
+      "phone": 119999999,
+      "email": "john@doe.com",
       "isActive": true,
       "products": [
         1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "id": 1
+    },
+    {
+      "name": "Luke Skywalker",
+      "document": 1212312312,
+      "phone": 11966666666,
+      "email": "luke.skywalker@jedi.tat",
+      "isActive": true,
+      "products": [
+        3
+      ],
+      "id": 2
+    },
+    {
+      "name": "Data Stone",
+      "document": 99999999,
+      "phone": 12345678,
+      "email": "data.stone@job.com",
+      "isActive": true,
+      "products": [
+        5,
+        4
+      ],
+      "id": 3
+    },
+    {
+      "name": "Jon Snow",
+      "document": 1313131313,
+      "phone": 3333333333,
+      "email": "john.snow@nightwatch.wes",
+      "isActive": true,
+      "products": [
+        1,
+        3
+      ],
+      "id": 4
+    },
+    {
+      "name": "Peter Parker",
+      "document": 5555555,
+      "phone": 22222222,
+      "email": "peter.parker@oscorp.ny",
+      "isActive": true,
+      "products": [
+        5,
         2
       ],
-      "id": 12
+      "id": 5
+    },
+    {
+      "name": "Luigi Mario",
+      "document": 2,
+      "phone": 987654321,
+      "email": "luigi.mario@bros.mush",
+      "isActive": true,
+      "products": [],
+      "id": 6
+    },
+    {
+      "name": "Bruce Wayne",
+      "document": 321654987,
+      "phone": 123654897,
+      "email": "bruce.wayne@batcave.got",
+      "isActive": true,
+      "products": [
+        3,
+        2,
+        1,
+        4,
+        5
+      ],
+      "id": 7
+    },
+    {
+      "name": "Elizabeth theQueen",
+      "document": 1,
+      "phone": 1,
+      "email": "elizabeth.queen@royal.uk",
+      "isActive": false,
+      "products": [
+        2,
+        1,
+        3,
+        4,
+        5
+      ],
+      "id": 8
     }
   ]
 }

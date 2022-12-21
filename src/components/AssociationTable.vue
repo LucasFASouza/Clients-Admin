@@ -82,10 +82,10 @@ async function submitAssociation() {
   const response = await api.client.update(client);
 
   if (response.ok) {
-    alert("Product edited successfully :)");
+    alert("Products associated successfully :)");
     router.push({ name: "home" });
   } else {
-    alert("Error editing product :( Please try again");
+    alert("Error associating products :( Please try again");
   }
 }
 
