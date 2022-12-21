@@ -17,7 +17,7 @@
       "document": 1,
       "phone": 1,
       "email": "a@a.com",
-      "isActive": false,
+      "isActive": true,
       "id": 1
     },
     {

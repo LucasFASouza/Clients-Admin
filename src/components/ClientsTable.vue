@@ -22,7 +22,7 @@
         <tr
           v-for="client in data"
           :key="client.id"
-          @click="openClient()"
+          @click="openClient(client.id)"
           class="hover:bg-slate-100 hover:cursor-pointer"
         >
           <td>{{ client.name }}</td>
@@ -51,8 +51,8 @@ const data = ref([]);
 
 const router = useRouter();
 
-function openClient() {
-  router.push({ name: "client", params: { mode: "edit" } });
+function openClient(id) {
+  router.push({ name: "client", params: { mode: id } });
 }
 
 async function getClients() {

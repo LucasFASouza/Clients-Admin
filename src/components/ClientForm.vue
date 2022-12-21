@@ -4,7 +4,7 @@
     @submit="submitClient"
     class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md"
   >
-    <h1 class="font-bold text-lg text-center">Register client</h1>
+    <h1 class="font-bold text-lg text-center">{{ routeMode }} client</h1>
 
     <div class="flex px-16 gap-12">
       <div class="flex flex-col w-1/2">
@@ -73,6 +73,10 @@ export default {
 
 <script setup>
 import { reactive } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const routeMode = route.params.mode == "register" ? "Register" : "Edit";
 
 const urlClients = import.meta.env.VITE_API_URL + "/clients";
 
@@ -83,6 +87,11 @@ const client = reactive({
   email: "",
   isActive: true,
 });
+
+if (routeMode == "Edit") {
+  client.id = route.params.mode;
+  getClient();
+}
 
 function submitClient(e) {
   e.preventDefault();
@@ -97,7 +106,29 @@ function submitClient(e) {
     return;
   }
 
-  postClient();
+  if (routeMode == "Register") {
+    postClient();
+  } else {
+    putClient();
+  }
+}
+
+async function getClient() {
+  const response = await fetch(urlClients + "/" + client.id);
+
+  if (response.ok) {
+    const data = await response.json();
+
+    console.log(data);
+
+    client.name = data.name;
+    client.document = data.document;
+    client.phone = data.phone;
+    client.email = data.email;
+    client.isActive = data.isActive;
+  } else {
+    alert("Error getting client :( Please try again");
+  }
 }
 
 async function postClient() {
@@ -113,6 +144,22 @@ async function postClient() {
     alert("Client registered successfully :)");
   } else {
     alert("Error registering client :( Please try again");
+  }
+}
+
+async function putClient() {
+  const response = await fetch(urlClients + "/" + client.id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(client),
+  });
+
+  if (response.ok) {
+    alert("Client edited successfully :)");
+  } else {
+    alert("Error editing client :( Please try again");
   }
 }
 </script>
