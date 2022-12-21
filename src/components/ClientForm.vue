@@ -81,7 +81,7 @@ const client = reactive({
   document: "",
   phone: "",
   email: "",
-  isActive: false,
+  isActive: true,
 });
 
 function submitClient(e) {

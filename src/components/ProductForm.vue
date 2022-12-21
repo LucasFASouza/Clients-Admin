@@ -44,7 +44,7 @@ import { reactive } from "vue";
 const urlProducts = import.meta.env.VITE_API_URL + "/products";
 const product = reactive({
   name: "",
-  isActive: false,
+  isActive: true,
 });
 
 function submitProduct(e) {
