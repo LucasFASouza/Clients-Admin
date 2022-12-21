@@ -61,12 +61,6 @@
         <input id="clientActive" v-model="client.isActive" type="checkbox" />
       </div>
 
-      <input
-        type="submit"
-        value="Submit"
-        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
-      />
-
       <a
         v-if="routeMode == 'Edit'"
         @click="deleteClient"
@@ -74,6 +68,12 @@
       >
         Delete
       </a>
+
+      <input
+        type="submit"
+        value="Submit"
+        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
+      />
     </div>
   </form>
 </template>

@@ -27,12 +27,6 @@
     </div>
 
     <div class="px-16 flex justify-around">
-      <input
-        type="submit"
-        value="Submit"
-        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
-      />
-
       <a
         v-if="routeMode == 'Edit'"
         @click="deleteProduct"
@@ -40,6 +34,12 @@
       >
         Delete
       </a>
+
+      <input
+        type="submit"
+        value="Submit"
+        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
+      />
     </div>
   </form>
 </template>
