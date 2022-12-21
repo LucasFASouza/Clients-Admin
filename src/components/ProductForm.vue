@@ -41,8 +41,7 @@ export default {
 <script setup>
 import { reactive } from "vue";
 
-const URL_PRODUCTS = "http://localhost:3000/products";
-
+const urlProducts = import.meta.env.VITE_API_URL + "/products";
 const product = reactive({
   name: "",
   isActive: false,
@@ -60,7 +59,7 @@ function submitProduct(e) {
 }
 
 async function postProduct() {
-  const response = await fetch(URL_PRODUCTS, {
+  const response = await fetch(urlProducts, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

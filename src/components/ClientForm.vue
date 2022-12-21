@@ -74,7 +74,7 @@ export default {
 <script setup>
 import { reactive } from "vue";
 
-const URL_CLIENTS = "http://localhost:3000/clients";
+const urlClients = import.meta.env.VITE_API_URL + "/clients";
 
 const client = reactive({
   name: "",
@@ -101,7 +101,7 @@ function submitClient(e) {
 }
 
 async function postClient() {
-  const response = await fetch(URL_CLIENTS, {
+  const response = await fetch(urlClients, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

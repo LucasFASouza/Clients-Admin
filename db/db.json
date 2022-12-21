@@ -1,5 +1,20 @@
 {
-  "products": [],
-  "clients": [],
+  "products": [
+    {
+      "name": "name",
+      "isActive": false,
+      "id": 1
+    }
+  ],
+  "clients": [
+    {
+      "name": "name",
+      "document": 1,
+      "phone": 1,
+      "email": "a@a.com",
+      "isActive": false,
+      "id": 1
+    }
+  ],
   "relationships": []
 }

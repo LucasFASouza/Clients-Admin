@@ -38,11 +38,11 @@ export default {
 <script setup>
 import { onMounted, ref } from "vue";
 
-const URL_CLIENTS = "http://localhost:3000/clients";
+const urlClients = import.meta.env.VITE_API_URL + "/clients";
 const data = ref([]);
 
 async function getClients() {
-  data.value = await fetch(URL_CLIENTS).then((res) => res.json());
+  data.value = await fetch(urlClients).then((res) => res.json());
 }
 
 onMounted(() => {
