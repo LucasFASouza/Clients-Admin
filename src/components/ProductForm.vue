@@ -50,11 +50,11 @@ export default {
 import { reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { api } from "../api";
+
 const route = useRoute();
 const router = useRouter();
-const routeMode = route.params.mode == "register" ? "Register" : "Edit";
-
-const urlProducts = import.meta.env.VITE_API_URL + "/products";
+const routeMode = route.params.id == "register" ? "Register" : "Edit";
 
 const product = reactive({
   name: "",
@@ -62,7 +62,7 @@ const product = reactive({
 });
 
 if (routeMode == "Edit") {
-  product.id = route.params.mode;
+  product.id = route.params.id;
   getProduct();
 }
 
@@ -75,17 +75,17 @@ function submitProduct(e) {
   }
 
   if (routeMode == "Register") {
-    postProduct();
+    createProduct();
   } else {
-    putProduct();
+    updateProduct();
   }
 }
 
 async function getProduct() {
-  const response = await fetch(urlProducts + "/" + product.id);
+  const response = await api.product.getOne(product.id);
 
   if (response.ok) {
-    const data = await response.json();
+    const data = response.json();
 
     product.name = data.name;
     product.isActive = data.isActive;
@@ -94,14 +94,8 @@ async function getProduct() {
   }
 }
 
-async function postProduct() {
-  const response = await fetch(urlProducts, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
+async function createProduct() {
+  const response = await api.product.create(product);
 
   if (response.ok) {
     alert("Product registered successfully :)");
@@ -111,14 +105,8 @@ async function postProduct() {
   }
 }
 
-async function putProduct() {
-  const response = await fetch(urlProducts + "/" + product.id, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
+async function updateProduct() {
+  const response = await api.product.update(product);
 
   if (response.ok) {
     alert("Product edited successfully :)");
@@ -129,9 +117,7 @@ async function putProduct() {
 }
 
 async function deleteProduct() {
-  const response = await fetch(urlProducts + "/" + product.id, {
-    method: "DELETE",
-  });
+  const response = await api.product.delete(product.id);
 
   if (response.ok) {
     alert("Product deleted successfully :)");

@@ -33,5 +33,5 @@ export default () => ({
     return await fetch(productURL + "/" + id, {
       method: "DELETE",
     });
-  }
+  },
 });

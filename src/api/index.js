@@ -3,7 +3,7 @@ import Product from "./repositories/ProductRepository.js";
 
 export const api = {
   client: Client(),
-  Product: Product(),
+  product: Product(),
 };
 
 export default {

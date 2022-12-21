@@ -83,11 +83,11 @@ export default {
 import { reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { api } from "../api";
+
 const route = useRoute();
 const router = useRouter();
-const routeMode = route.params.mode == "register" ? "Register" : "Edit";
-
-const urlClients = import.meta.env.VITE_API_URL + "/clients";
+const routeMode = route.params.id == "register" ? "Register" : "Edit";
 
 const client = reactive({
   name: "",
@@ -95,10 +95,11 @@ const client = reactive({
   phone: "",
   email: "",
   isActive: true,
+  products: [],
 });
 
 if (routeMode == "Edit") {
-  client.id = route.params.mode;
+  client.id = route.params.id;
   getClient();
 }
 
@@ -116,17 +117,17 @@ function submitClient(e) {
   }
 
   if (routeMode == "Register") {
-    postClient();
+    createClient();
   } else {
-    putClient();
+    updateClient();
   }
 }
 
 async function getClient() {
-  const response = await fetch(urlClients + "/" + client.id);
+  const response = await api.client.getOne(client.id);
 
   if (response.ok) {
-    const data = await response.json();
+    const data = response.json();
 
     client.name = data.name;
     client.document = data.document;
@@ -138,14 +139,8 @@ async function getClient() {
   }
 }
 
-async function postClient() {
-  const response = await fetch(urlClients, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(client),
-  });
+async function createClient() {
+  const response = await api.client.create(client);
 
   if (response.ok) {
     alert("Client registered successfully :)");
@@ -155,14 +150,8 @@ async function postClient() {
   }
 }
 
-async function putClient() {
-  const response = await fetch(urlClients + "/" + client.id, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(client),
-  });
+async function updateClient() {
+  const response = await api.client.update(client);
 
   if (response.ok) {
     alert("Client edited successfully :)");
@@ -173,9 +162,7 @@ async function putClient() {
 }
 
 async function deleteClient() {
-  const response = await fetch(urlClients + "/" + client.id, {
-    method: "DELETE",
-  });
+  const response = await api.client.delete(client.id);
 
   if (response.ok) {
     alert("Client deleted successfully :)");
