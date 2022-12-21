@@ -11,19 +11,21 @@
     <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
-          <th class="w-1/2">Name</th>
-          <th class="w-1/2">Active</th>
+          <th>Name</th>
+          <th>Active</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="product in data"
-          :key="product.id"
-          @click="openProduct(product.id)"
-          class="hover:bg-slate-100 hover:cursor-pointer"
-        >
+        <tr v-for="product in data" :key="product.id">
           <td>{{ product.name }}</td>
           <td>{{ product.isActive ? "Yes" : "No :(" }}</td>
+          <td class="hover:cursor-pointer flex justify-center gap-2">
+            <PencilSquareIcon
+              @click="openProduct(product.id)"
+              class="h-6 w-6 text-slate-400 hover:text-slate-600"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -41,6 +43,8 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 import { api } from "../api";
+
+import { PencilSquareIcon } from "@heroicons/vue/24/outline";
 
 const data = ref([]);
 

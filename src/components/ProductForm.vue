@@ -2,8 +2,12 @@
   <form
     id="register-product"
     @submit="submitProduct"
-    class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md"
+    class="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-md flex flex-col gap-5 py-5"
   >
+    <ArrowUturnLeftIcon
+      @click="router.back()"
+      class="h-6 w-6 mx-6 text-slate-400 hover:text-slate-600 hover:cursor-pointer"
+    />
     <h1 class="font-bold text-lg text-center">Register product</h1>
 
     <div class="flex px-16 gap-12">
@@ -16,23 +20,23 @@
           class="shadow rounded-md p-1 px-2"
         />
       </div>
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-1/2 items-center gap-3">
         <label for="productActive">Active</label>
         <input id="productActive" v-model="product.isActive" type="checkbox" />
       </div>
     </div>
 
-    <div class="px-16 flex justify-center">
+    <div class="px-16 flex justify-around">
       <input
         type="submit"
         value="Submit"
-        class="bg-green-500 text-white rounded-md p-1 px-2"
+        class="bg-green-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
       />
 
       <a
         v-if="routeMode == 'Edit'"
         @click="deleteProduct"
-        class="bg-red-500 text-white rounded-md p-1 px-2"
+        class="bg-red-500 text-white rounded-md p-1 px-2 hover:cursor-pointer"
       >
         Delete
       </a>
@@ -51,6 +55,8 @@ import { reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { api } from "../api";
+
+import { ArrowUturnLeftIcon } from "@heroicons/vue/24/outline";
 
 const route = useRoute();
 const router = useRouter();
