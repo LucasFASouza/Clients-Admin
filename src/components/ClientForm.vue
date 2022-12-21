@@ -73,9 +73,10 @@ export default {
 
 <script setup>
 import { reactive } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 const routeMode = route.params.mode == "register" ? "Register" : "Edit";
 
 const urlClients = import.meta.env.VITE_API_URL + "/clients";
@@ -119,8 +120,6 @@ async function getClient() {
   if (response.ok) {
     const data = await response.json();
 
-    console.log(data);
-
     client.name = data.name;
     client.document = data.document;
     client.phone = data.phone;
@@ -142,6 +141,7 @@ async function postClient() {
 
   if (response.ok) {
     alert("Client registered successfully :)");
+    router.push({ name: "home" });
   } else {
     alert("Error registering client :( Please try again");
   }
@@ -158,6 +158,7 @@ async function putClient() {
 
   if (response.ok) {
     alert("Client edited successfully :)");
+    router.push({ name: "home" });
   } else {
     alert("Error editing client :( Please try again");
   }

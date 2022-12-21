@@ -2,13 +2,18 @@
   "products": [
     {
       "name": "name",
-      "isActive": false,
+      "isActive": true,
       "id": 1
     },
     {
       "name": "a",
-      "isActive": false,
+      "isActive": true,
       "id": 2
+    },
+    {
+      "name": "name test",
+      "isActive": false,
+      "id": 3
     }
   ],
   "clients": [
@@ -22,11 +27,27 @@
     },
     {
       "name": "name 2",
-      "document": 2,
+      "document": 6777,
       "phone": 2,
       "email": "b@b.com",
       "isActive": true,
       "id": 10
+    },
+    {
+      "name": "client 3",
+      "document": 3,
+      "phone": 3,
+      "email": "a@c.br",
+      "isActive": true,
+      "id": 11
+    },
+    {
+      "name": "eu",
+      "document": 32,
+      "phone": 756,
+      "email": "luc@gmail.com",
+      "isActive": true,
+      "id": 12
     }
   ],
   "relationships": []

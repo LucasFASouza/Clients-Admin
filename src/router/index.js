@@ -17,8 +17,8 @@ const router = createRouter({
       component: RegisterClient,
     },
     {
-      path: "/product",
-      name: "produtc",
+      path: "/product/:mode",
+      name: "product",
       component: RegisterProduct,
     },
   ],
