@@ -1,30 +1,6 @@
 {
-  "products": [
-    {
-      "name": "name",
-      "isActive": true,
-      "id": 1
-    },
-    {
-      "name": "a",
-      "isActive": true,
-      "id": 2
-    },
-    {
-      "name": "name test",
-      "isActive": false,
-      "id": 3
-    }
-  ],
+  "products": [],
   "clients": [
-    {
-      "name": "name",
-      "document": 1,
-      "phone": 1,
-      "email": "a@a.com",
-      "isActive": true,
-      "id": 1
-    },
     {
       "name": "name 2",
       "document": 6777,
@@ -40,14 +16,6 @@
       "email": "a@c.br",
       "isActive": true,
       "id": 11
-    },
-    {
-      "name": "eu",
-      "document": 32,
-      "phone": 756,
-      "email": "luc@gmail.com",
-      "isActive": true,
-      "id": 12
     }
   ],
   "relationships": []

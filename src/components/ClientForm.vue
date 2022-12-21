@@ -61,6 +61,14 @@
         value="Submit"
         class="bg-green-500 text-white rounded-md p-1 px-2"
       />
+
+      <a
+        v-if="routeMode == 'Edit'"
+        @click="deleteClient"
+        class="bg-red-500 text-white rounded-md p-1 px-2"
+      >
+        Delete
+      </a>
     </div>
   </form>
 </template>
@@ -161,6 +169,19 @@ async function putClient() {
     router.push({ name: "home" });
   } else {
     alert("Error editing client :( Please try again");
+  }
+}
+
+async function deleteClient() {
+  const response = await fetch(urlClients + "/" + client.id, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    alert("Client deleted successfully :)");
+    router.push({ name: "home" });
+  } else {
+    alert("Error deleting client :( Please try again");
   }
 }
 </script>

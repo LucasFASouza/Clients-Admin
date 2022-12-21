@@ -28,6 +28,14 @@
         value="Submit"
         class="bg-green-500 text-white rounded-md p-1 px-2"
       />
+
+      <a
+        v-if="routeMode == 'Edit'"
+        @click="deleteProduct"
+        class="bg-red-500 text-white rounded-md p-1 px-2"
+      >
+        Delete
+      </a>
     </div>
   </form>
 </template>
@@ -117,6 +125,19 @@ async function putProduct() {
     router.push({ name: "home" });
   } else {
     alert("Error editing product :( Please try again");
+  }
+}
+
+async function deleteProduct() {
+  const response = await fetch(urlProducts + "/" + product.id, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    alert("Product deleted successfully :)");
+    router.push({ name: "home" });
+  } else {
+    alert("Error deleting product :( Please try again");
   }
 }
 </script>
