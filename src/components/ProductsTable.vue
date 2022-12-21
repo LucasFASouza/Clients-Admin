@@ -4,7 +4,9 @@
       class="flex flex-row justify-center gap-5 text-xl text-center font-bold pb-2"
     >
       <h2>Products</h2>
-      <router-link to="product">+</router-link>
+      <router-link :to="{ name: 'product', params: { mode: 'register' } }">
+        +
+      </router-link>
     </div>
     <table class="w-full text-center shadow rounded-md">
       <thead>
@@ -14,7 +16,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product in data" :key="product.id">
+        <tr
+          v-for="product in data"
+          :key="product.id"
+          @click="openProduct(product.id)"
+          class="hover:bg-slate-100 hover:cursor-pointer"
+        >
           <td>{{ product.name }}</td>
           <td>{{ product.isActive ? "Yes" : "No :(" }}</td>
         </tr>
@@ -31,12 +38,19 @@ export default {
 
 <script setup>
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
-const URL_PRODUCTS = "http://localhost:3000/products";
+const urlProducts = import.meta.env.VITE_API_URL + "/products";
 const data = ref([]);
 
+const router = useRouter();
+
+function openProduct(id) {
+  router.push({ name: "product", params: { mode: id } });
+}
+
 async function getClients() {
-  data.value = await fetch(URL_PRODUCTS).then((res) => res.json());
+  data.value = await fetch(urlProducts).then((res) => res.json());
 }
 
 onMounted(() => {

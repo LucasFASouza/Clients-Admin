@@ -12,13 +12,13 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/client",
+      path: "/client/:mode",
       name: "client",
       component: RegisterClient,
     },
     {
-      path: "/product",
-      name: "produtc",
+      path: "/product/:mode",
+      name: "product",
       component: RegisterProduct,
     },
   ],
