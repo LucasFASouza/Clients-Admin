@@ -1,22 +1,46 @@
 {
-  "products": [],
+  "products": [
+    {
+      "name": "product 64",
+      "isActive": true,
+      "id": 1
+    },
+    {
+      "name": "2",
+      "isActive": true,
+      "id": 2
+    }
+  ],
   "clients": [
     {
-      "name": "name 2",
+      "name": "nam 2",
       "document": 6777,
       "phone": 2,
       "email": "b@b.com",
       "isActive": true,
+      "products": [],
       "id": 10
     },
     {
-      "name": "client 3",
-      "document": 3,
-      "phone": 3,
-      "email": "a@c.br",
+      "name": "Nome da silva",
+      "document": 1234567,
+      "phone": 987654321,
+      "email": "nome@silva.com",
       "isActive": true,
+      "products": [],
       "id": 11
+    },
+    {
+      "name": "new test8",
+      "document": 420,
+      "phone": 420,
+      "email": "new@test.com",
+      "isActive": true,
+      "products": [
+        1,
+        2
+      ],
+      "id": 12
     }
-  ],
-  "relationships": []
+  ]
 }

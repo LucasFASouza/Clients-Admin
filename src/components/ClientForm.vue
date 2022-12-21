@@ -127,7 +127,7 @@ async function getClient() {
   const response = await api.client.getOne(client.id);
 
   if (response.ok) {
-    const data = response.json();
+    const data = await response.json();
 
     client.name = data.name;
     client.document = data.document;

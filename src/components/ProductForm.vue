@@ -85,7 +85,7 @@ async function getProduct() {
   const response = await api.product.getOne(product.id);
 
   if (response.ok) {
-    const data = response.json();
+    const data = await response.json();
 
     product.name = data.name;
     product.isActive = data.isActive;

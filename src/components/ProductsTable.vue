@@ -40,7 +40,8 @@ export default {
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const urlProducts = import.meta.env.VITE_API_URL + "/products";
+import { api } from "../api";
+
 const data = ref([]);
 
 const router = useRouter();
@@ -49,11 +50,11 @@ function openProduct(id) {
   router.push({ name: "product", params: { id: id } });
 }
 
-async function getClients() {
-  data.value = await fetch(urlProducts).then((res) => res.json());
+async function getProducts() {
+  data.value = await api.product.getAll();
 }
 
 onMounted(() => {
-  getClients();
+  getProducts();
 });
 </script>
