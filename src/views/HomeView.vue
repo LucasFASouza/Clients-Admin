@@ -1,8 +1,8 @@
 <template>
   <main>
-    <div class="flex flex-col md:flex-row gap-32 px-16">
-      <clients-table class="w-3/4" />
-      <products-table class="w-1/4" />
+    <div class="flex flex-col text-sm gap-32 md:flex-row md:px-16 md:text-base">
+      <clients-table class="md:w-3/4" />
+      <products-table class="md:w-1/4" />
     </div>
   </main>
 </template>
