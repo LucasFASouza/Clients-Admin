@@ -1,5 +1,14 @@
 {
   "products": [],
-  "clients": [],
+  "clients": [
+    {
+      "name": "client",
+      "document": 1,
+      "phone": 1,
+      "email": "A@a.com",
+      "isActive": false,
+      "id": 1
+    }
+  ],
   "relationships": []
 }
