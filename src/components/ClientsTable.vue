@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-xl text-center font-bold">Clientes</h2>
+    <h2 class="text-xl text-center font-bold pb-2">Clientes</h2>
     <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
@@ -17,7 +17,7 @@
           <td>{{ client.document }}</td>
           <td>{{ client.phone }}</td>
           <td>{{ client.email }}</td>
-          <td>{{ client.isActive }}</td>
+          <td>{{ client.isActive ? "Yes" : "No :(" }}</td>
         </tr>
       </tbody>
     </table>
