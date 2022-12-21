@@ -5,7 +5,9 @@
     >
       <h2>Products</h2>
       <router-link :to="{ name: 'product', params: { id: 'register' } }">
-        +
+        <PlusCircleIcon
+          class="h-6 w-6 text-slate-400 hover:text-slate-600 hover:cursor-pointer"
+        />
       </router-link>
     </div>
     <table class="w-full text-center shadow rounded-md">
@@ -44,7 +46,7 @@ import { useRouter } from "vue-router";
 
 import { api } from "../api";
 
-import { PencilSquareIcon } from "@heroicons/vue/24/outline";
+import { PencilSquareIcon, PlusCircleIcon } from "@heroicons/vue/24/outline";
 
 const data = ref([]);
 
