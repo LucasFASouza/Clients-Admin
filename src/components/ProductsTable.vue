@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-xl text-center font-bold pb-2">Produtos</h2>
+    <h2 class="text-xl text-center font-bold pb-2">Products</h2>
     <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
