@@ -12,7 +12,7 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/client:mode",
+      path: "/client/:mode",
       name: "client",
       component: RegisterClient,
     },

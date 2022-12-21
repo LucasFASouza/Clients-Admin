@@ -4,7 +4,7 @@
       class="flex flex-row justify-center gap-5 text-xl text-center font-bold pb-2"
     >
       <h2>Clients</h2>
-      <router-link :to="{ path: 'client', params: { mode: register } }">
+      <router-link :to="{ name: 'client', params: { mode: 'register' } }">
         +
       </router-link>
     </div>
@@ -49,8 +49,10 @@ import { useRouter } from "vue-router";
 const urlClients = import.meta.env.VITE_API_URL + "/clients";
 const data = ref([]);
 
+const router = useRouter();
+
 function openClient() {
-  useRouter.push({ name: "user", params: { mode: "edit" } });
+  router.push({ name: "client", params: { mode: "edit" } });
 }
 
 async function getClients() {
