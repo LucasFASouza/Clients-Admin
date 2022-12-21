@@ -58,7 +58,7 @@
         </div>
 
         <input
-          @click="submit"
+          type="submit"
           value="Submit"
           class="bg-green-500 text-white rounded-md p-1 px-2"
         />
@@ -70,6 +70,8 @@
 <script setup>
 import { reactive } from "vue";
 
+const URL_CLIENTS = "http://localhost:3000/clients";
+
 const client = reactive({
   name: "",
   document: "",
@@ -78,7 +80,9 @@ const client = reactive({
   isActive: false,
 });
 
-function submit() {
+function submitClient(e) {
+  e.preventDefault();
+
   if (
     client.name === "" ||
     client.document === "" ||
@@ -89,6 +93,22 @@ function submit() {
     return;
   }
 
-  console.log(client);
+  postClient();
+}
+
+async function postClient() {
+  const response = await fetch(URL_CLIENTS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(client),
+  });
+
+  if (response.ok) {
+    alert("Client registered successfully :)");
+  } else {
+    alert("Error registering client :( Please try again");
+  }
 }
 </script>

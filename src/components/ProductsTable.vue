@@ -6,7 +6,7 @@
       <h2>Products</h2>
       <router-link to="product">+</router-link>
     </div>
-    <table class="w-full text-center">
+    <table class="w-full text-center shadow rounded-md">
       <thead>
         <tr>
           <th class="w-1/2">Name</th>

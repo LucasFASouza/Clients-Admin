@@ -29,7 +29,7 @@
 
       <div class="px-16 flex justify-center">
         <input
-          @click="submit"
+          type="submit"
           value="Submit"
           class="bg-green-500 text-white rounded-md p-1 px-2"
         />
@@ -41,17 +41,37 @@
 <script setup>
 import { reactive } from "vue";
 
+const URL_PRODUCTS = "http://localhost:3000/products";
+
 const product = reactive({
   name: "",
   isActive: false,
 });
 
-function submit() {
+function submitProduct(e) {
+  e.preventDefault();
+
   if (product.name === "") {
     alert("Please fill in all fields before submitting");
     return;
   }
 
-  console.log(product);
+  postProduct();
+}
+
+async function postProduct() {
+  const response = await fetch(URL_PRODUCTS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+
+  if (response.ok) {
+    alert("Product registered successfully :)");
+  } else {
+    alert("Error registering product :( Please try again");
+  }
 }
 </script>
